@@ -7,7 +7,7 @@
 
 import React from 'react';
 import type {PropsWithChildren} from 'react';
-import CadastroAnimal from './__tests__/src/screens/CadastroAnimal';
+import CadastroAnimal from './src/screens/CadastroAnimal';
 
 function App(): React.JSX.Element{
   return(

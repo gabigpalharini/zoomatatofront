@@ -1,10 +1,7 @@
 import React, { useState } from "react";
 import { Image, ScrollView, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View, Linking } from "react-native";
-import axios from "axios";
 
-function zap(){
-    Linking.openURL('https://github.com/gabigpalharini/Tog_Burger');
-  }
+
 
 const CadastroAnimal: React.FC = () => {
     const [animal, setAnimal] = useState<Animal[]>([]);
@@ -33,24 +30,17 @@ const CadastroAnimal: React.FC = () => {
          formData.append('ra', ra);
          
     
-         const response = await axios.post('http://10.137.11.228:8000/api/animal', formData, {
-        headers: {
-            'Content-Type': 'multipart/form-data'
-        }
-         })
-        }catch(error) {
-          console.log(error)
+         
         }
     }
 
    
-
       return (
         <View style={styles.container}>
             <StatusBar backgroundColor="#FF8800" barStyle="light-content" />
             <View style={styles.header}>
            
-                <Image source={require('../assets/image/logotipo.png')} style={styles.logotipo} />
+                <Image source={require('./assets/image/logo.png')} style={styles.logotipo} />
 
                 </View>
                 <View style={styles.alinhamentoImagemSelecionada}>
@@ -59,11 +49,14 @@ const CadastroAnimal: React.FC = () => {
             <ScrollView>
             <View style={styles.form}>
                 <TextInput style={styles.input} placeholder="Nome" value={nome} onChangeText={setNome} />
-                <TextInput style={styles.input} placeholder="Telefone" value={telefone} onChangeText={setTelefone} />
-                <TextInput style={styles.input} placeholder="Cpf" value={cpf} onChangeText={setCpf} />
-                <TextInput style={styles.input} placeholder="Endereco" value={endereco} onChangeText={setEndereco}/>
-                <TextInput style={styles.input} placeholder="Email" value={email} onChangeText={setEmail} />
-                <TextInput style={styles.input} placeholder="Senha" value={password} onChangeText={setPassword} />
+                <TextInput style={styles.input} placeholder="Especie" value={especie} onChangeText={setEspecie} />
+                <TextInput style={styles.input} placeholder="Peso" value={peso} onChangeText={setPeso} />
+                <TextInput style={styles.input} placeholder="Altura" value={altura} onChangeText={setAltura}/>
+                <TextInput style={styles.input} placeholder="Sexo" value={sexo} onChangeText={setSexo}/>
+                <TextInput style={styles.input} placeholder="Dieta" value={dieta} onChangeText={setDieta} />
+                <TextInput style={styles.input} placeholder="Habitat" value={habitat} onChangeText={setHabitat} />
+                <TextInput style={styles.input} placeholder="Idade" value={idade} onChangeText={setIdade} />
+                <TextInput style={styles.input} placeholder="Ra" value={ra} onChangeText={setRa} />
                 
                 
                

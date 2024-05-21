@@ -34,8 +34,8 @@ const CadastroAnimal = () => {
             formData.append('dieta', dieta);
             formData.append('habitat', habitat);
 
-            const response = await axios.post('http://10.137.11.225:8000/api/animal/cadastrar', formData, {
-                headers: {
+            const response = await axios.post('http://10.137.11.228:8000/api/animal/cadastrar', formData, {
+              headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
@@ -53,15 +53,9 @@ const CadastroAnimal = () => {
            
             <View style={styles.header}>
                 <Image source={logo} style={styles.logo} />
-                <View style={styles.alinhamentopesquisa} >
-                <Image source={require('../assets/images/lupa.png')} style={styles.lupa} />
-
-                <TextInput
-                    style={styles.input}
-                    placeholder="Pesquisar"
-                    placeholderTextColor={'black'} />
-
-            </View>
+              
+               
+          
             </View>
             <View style={styles.form}>
                 <Text style={styles.fText}>Cadastro de Animais</Text>
@@ -152,7 +146,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         marginTop: 10,
         width: '90%',
-
+        color:''
     },
     container: {
         flex: 1,

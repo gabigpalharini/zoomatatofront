@@ -23,7 +23,7 @@ const ListagemAnimal = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await axios.get<Animal[]>('http://10.137.11.225:8000/api/animal/todos');
+                const response = await axios.get<Animal[]>('http://10.137.11.228:8000/api/animal/todos');
                 console.log('Dados recebidos da API:', response.data);
                 setDados(response.data);
                 console.log("dados da api" + dados);

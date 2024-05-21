@@ -8,6 +8,7 @@
 import React from 'react';
 import type {PropsWithChildren} from 'react';
 import CadastroAnimal from './src/screens/CadastroAnimal';
+import ListagemAnimal from './src/screens/ListagemAnimal';
 
 function App(): React.JSX.Element{
   return(
@@ -15,6 +16,7 @@ function App(): React.JSX.Element{
    
    
   <CadastroAnimal/>
+ // <ListagemAnimal/>
   );
 }
 

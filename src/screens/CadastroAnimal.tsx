@@ -1,6 +1,9 @@
 import React, { useState } from "react";
-import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView } from "react-native";
+import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, Alert } from "react-native";
 import axios from 'axios';
+import Head from "../componentes/Head";
+import Footer from "../componentes/Footer";
+
 
 const CadastroAnimal = () => {
     const [animais, setAnimais] = useState<Animal[]>([]);
@@ -24,11 +27,11 @@ const CadastroAnimal = () => {
             formData.append('especie', especie);
             formData.append('ra', ra);
             formData.append('peso', peso);
-            formData.append('altura',altura);
+            formData.append('altura', altura);
             formData.append('sexo', sexo);
             formData.append('dieta', dieta);
             formData.append('habitat', habitat);
-           
+
             const response = await axios.post('http://10.137.11.225:8000/api/animal/cadastrar', formData, {
                 headers: {
                     'Content-Type': 'multipart/form-data'
@@ -39,12 +42,15 @@ const CadastroAnimal = () => {
             console.log(error);
         }
     }
-        
+
 
     return (
+       
         <ScrollView style={styles.container}>
-            <StatusBar backgroundColor="#ffdab9" barStyle="light-content" />
+            <StatusBar backgroundColor="black" barStyle="light-content" />
+           
             <View style={styles.header}>
+            
                 <Image source={logo} style={styles.logo} />
             </View>
             <View style={styles.form}>
@@ -52,54 +58,81 @@ const CadastroAnimal = () => {
                 <TextInput
                     style={styles.input}
                     placeholder="Nome do Animal"
-                    value={nome}
                     onChangeText={setNome} />
                 <TextInput
                     style={styles.input}
                     placeholder="Idade"
-                    value={String(idade)}
                     onChangeText={setIdade} />
                 <TextInput
                     style={styles.input}
                     placeholder="Espécie"
-                    value={especie}
                     onChangeText={setEspecie} />
                 <TextInput
                     style={styles.input}
                     placeholder="RA"
-                    value={ra}
                     onChangeText={setRa} />
                 <TextInput
                     style={styles.input}
-                    placeholder="Peso"
-                    value={peso}
+                    placeholder="Peso em Kg"
+                    keyboardType="decimal-pad"
                     onChangeText={setPeso} />
                 <TextInput
                     style={styles.input}
-                    placeholder="Altura"
-                    value={(altura)}
+                    placeholder="Altura em Cm"
+                    keyboardType="decimal-pad"
                     onChangeText={setAltura} />
                 <TextInput
                     style={styles.input}
                     placeholder="Sexo"
-                    value={sexo}
                     onChangeText={setSexo} />
                 <TextInput
                     style={styles.input}
                     placeholder="Dieta"
-                    value={dieta}
                     onChangeText={setDieta} />
                 <TextInput
                     style={styles.input}
                     placeholder="Habitat"
-                    value={habitat}
                     onChangeText={setHabitat} />
-               
+
                 <TouchableOpacity style={styles.imageButton} onPress={cadastrarAnimal}>
                     <Text style={styles.imageButtonText}>Cadastrar Animal</Text>
                 </TouchableOpacity>
             </View>
+
+           
+            <View style={styles.footer}>
+
+            <TouchableOpacity>
+                    <Image
+                        source={require('../assets/images/menu.png')}
+                        style={styles.footerIcon}
+                    />
+                    </TouchableOpacity>
+                    
+                <TouchableOpacity >
+                    <Image
+                        source={require('../assets/images/home.png')}
+                        style={styles.footerIcon}
+
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Image
+                        source={require('../assets/images/profile.png')}
+                        style={styles.footerIcon}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Image
+                        source={require('../assets/images/lupa.png')}
+                        style={styles.footerIcon}
+                    />
+                </TouchableOpacity>
+            </View>
+          
         </ScrollView>
+
+    
     );
 }
 const styles = StyleSheet.create({
@@ -107,32 +140,33 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     header: {
-        backgroundColor: '#ffdab9',
+        backgroundColor: '#606c38',
         paddingVertical: 10,
         alignItems: 'center',
     },
     logo: {
-        width: 130,
-        height: 100,
+        width: 200,
+        height: 130,
     },
     form: {
         padding: 10,
-        backgroundColor: 'white',
+        backgroundColor: '#ccd5ae',
         marginBottom: 10,
         paddingVertical: 30,
     },
     input: {
         height: 40,
-        borderColor: 'gray',
+        borderColor: 'white',
         borderWidth: 1,
         marginBottom: 10,
         paddingHorizontal: 10,
         borderRadius: 10,
+        backgroundColor: '#fefae0'
     },
     imageButton: {
-        backgroundColor: '#ffdab9',
+        backgroundColor: '#606c38',
         padding: 10,
-        borderRadius: 5,
+        borderRadius: 20,
         alignItems: 'center',
         marginBottom: 10,
     },
@@ -144,20 +178,35 @@ const styles = StyleSheet.create({
         fontSize: 20,
         fontWeight: 'bold',
         color: 'black',
-        paddingVertical: 10,
+        paddingVertical: 12,
+        paddingHorizontal: 'auto',
+    
     },
     footer: {
-        borderTopWidth: 1,
-        backgroundColor: 'white',
+        borderTopWidth: 1.5,
+        backgroundColor: '#fefae0', // Alterado para um cinza claro para contrastar com o fundo branco
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingVertical: 20,
+        paddingVertical: 15, // Ajustado para um valor menor para um espaçamento mais fino
+        paddingHorizontal: 20, // Adicionado para criar um espaço horizontal confortável
+        shadowColor: "#000", // Adicionado para dar sombra
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5, // Opicional para Android
+        
     },
+
     footerIcon: {
-        width: 30,
-        height: 30,
+        width: 24, // Reduzido para um tamanho mais adequado
+        height: 24, // Reduzido para manter proporção
+        margin: 10, // Adicionado para criar espaço entre os ícones
     },
+
 });
 
 

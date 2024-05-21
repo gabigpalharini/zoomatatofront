@@ -19,6 +19,8 @@ const CadastroAnimal = () => {
 
     const logo = require('../assets/images/logo.png');
 
+    
+
     const cadastrarAnimal = async () => {
         try {
             const formData = new FormData();
@@ -50,11 +52,20 @@ const CadastroAnimal = () => {
             <StatusBar backgroundColor="black" barStyle="light-content" />
            
             <View style={styles.header}>
-            
                 <Image source={logo} style={styles.logo} />
+                <View style={styles.alinhamentopesquisa} >
+                <Image source={require('../assets/images/lupa.png')} style={styles.lupa} />
+
+                <TextInput
+                    style={styles.input}
+                    placeholder="Pesquisar"
+                    placeholderTextColor={'black'} />
+
+            </View>
             </View>
             <View style={styles.form}>
                 <Text style={styles.fText}>Cadastro de Animais</Text>
+                
                 <TextInput
                     style={styles.input}
                     placeholder="Nome do Animal"
@@ -99,7 +110,7 @@ const CadastroAnimal = () => {
                 </TouchableOpacity>
             </View>
 
-           
+            
             <View style={styles.footer}>
 
             <TouchableOpacity>
@@ -136,6 +147,13 @@ const CadastroAnimal = () => {
     );
 }
 const styles = StyleSheet.create({
+    alinhamentopesquisa: {
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginTop: 10,
+        width: '90%',
+
+    },
     container: {
         flex: 1,
     },
@@ -153,6 +171,12 @@ const styles = StyleSheet.create({
         backgroundColor: '#ccd5ae',
         marginBottom: 10,
         paddingVertical: 30,
+    },
+    lupa: {
+        width: 30,
+        height: 30,
+        marginLeft: 20,
+        marginTop: 50
     },
     input: {
         height: 40,

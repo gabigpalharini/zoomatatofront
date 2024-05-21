@@ -1,11 +1,35 @@
 import React from "react";
-import { StyleSheet,  Text, View } from "react-native";
+import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 function Footer(): React.JSX.Element {
     return (
         <View style={styles.footer} >
-        <Text style={styles.footerIcon} >App Exemplo</Text>
-    </View>
+<TouchableOpacity>
+                    <Image
+                        source={require('../assets/images/menu.png')}
+                        style={styles.footerIcon}
+                    />
+                    </TouchableOpacity>
+                    
+                <TouchableOpacity >
+                    <Image
+                        source={require('../assets/images/home.png')}
+                        style={styles.footerIcon}
+
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Image
+                        source={require('../assets/images/profile.png')}
+                        style={styles.footerIcon}
+                    />
+                </TouchableOpacity>
+                <TouchableOpacity>
+                    <Image
+                        source={require('../assets/images/lupa.png')}
+                        style={styles.footerIcon}
+                    />
+                </TouchableOpacity>    </View>
     );
 
 }

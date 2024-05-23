@@ -105,36 +105,7 @@ const CadastroAnimal = () => {
             </View>
 
             
-            <View style={styles.footer}>
-
-            <TouchableOpacity>
-                    <Image
-                        source={require('../assets/images/menu.png')}
-                        style={styles.footerIcon}
-                    />
-                    </TouchableOpacity>
-                    
-                <TouchableOpacity >
-                    <Image
-                        source={require('../assets/images/home.png')}
-                        style={styles.footerIcon}
-
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Image
-                        source={require('../assets/images/profile.png')}
-                        style={styles.footerIcon}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Image
-                        source={require('../assets/images/lupa.png')}
-                        style={styles.footerIcon}
-                    />
-                </TouchableOpacity>
-            </View>
-          
+        <Footer />
         </ScrollView>
 
     

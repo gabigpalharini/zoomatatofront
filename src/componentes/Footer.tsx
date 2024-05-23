@@ -1,47 +1,48 @@
+import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
+
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 function Footer(): React.JSX.Element {
-    return (
-        <View style={styles.footer} >
-<TouchableOpacity>
-                    <Image
-                        source={require('../assets/images/menu.png')}
-                        style={styles.footerIcon}
-                    />
-                    </TouchableOpacity>
-                    
-                <TouchableOpacity >
-                    <Image
-                        source={require('../assets/images/home.png')}
-                        style={styles.footerIcon}
+  
+        const navigation = useNavigation();
+       // const route = useRoute();
 
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Image
-                        source={require('../assets/images/profile.png')}
-                        style={styles.footerIcon}
-                    />
-                </TouchableOpacity>
-                <TouchableOpacity>
-                    <Image
-                        source={require('../assets/images/lupa.png')}
-                        style={styles.footerIcon}
-                    />
-                </TouchableOpacity>    </View>
+    return(
+        <View style={styles.footer}>
+      <TouchableOpacity onPress={() => navigation.navigate('ListagemAnimal')}>
+        <Image source={require('../assets/images/lupa.png')}
+        style={styles.footerIcon}/>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() =>navigation.navigate('CadastroAnimal')}>
+        <Image source={require('../assets/images/profile.png')}
+         style={styles.footerIcon}/>
+      </TouchableOpacity>
+
+
+      <TouchableOpacity >
+        <Image source={require('../assets/images/home.png')}
+         style={styles.footerIcon}/>
+      </TouchableOpacity>
+
+      <TouchableOpacity >
+        <Image source={require('../assets/images/menu.png')}
+         style={styles.footerIcon}/>
+      </TouchableOpacity>
+     </View>
     );
 
-}
+    }
 const styles = StyleSheet.create({
     footer: {
         borderTopWidth: 1,
-        backgroundColor: '#f0f0f0', // Alterado para um cinza claro para contrastar com o fundo branco
+        backgroundColor: '#f0f0f0',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
-        paddingVertical: 15, // Ajustado para um valor menor para um espaçamento mais fino
-        paddingHorizontal: 20, // Adicionado para criar um espaço horizontal confortável
+        paddingVertical: 15, 
+        paddingHorizontal: 20, 
         shadowColor: "#000", // Adicionado para dar sombra
         shadowOffset: {
             width: 0,
@@ -49,13 +50,13 @@ const styles = StyleSheet.create({
         },
         shadowOpacity: 0.25,
         shadowRadius: 3.84,
-        elevation: 5, // Opicional para Android
+        elevation: 5, 
     },
 
     footerIcon: {
-        width: 24, // Reduzido para um tamanho mais adequado
-        height: 24, // Reduzido para manter proporção
-        margin: 10, // Adicionado para criar espaço entre os ícones
+        width: 24, 
+        height: 24, 
+        margin: 10, 
     },
 });
 

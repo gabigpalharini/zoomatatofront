@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { FlatList, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import axios from 'axios';
+import Footer from '../componentes/Footer';
 
 interface Animal {
     id: string;
@@ -67,12 +68,15 @@ const ListagemAnimal = () => {
                 renderItem={renderItem}
                 keyExtractor={(item) => item.id}
             />
+            <Footer/>
         </View>
+        
     );
 }
 
 
 const styles = StyleSheet.create({
+
     container: {
         flex: 1,
     },

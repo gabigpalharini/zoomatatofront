@@ -36,7 +36,7 @@ function Footer(): React.JSX.Element {
 const styles = StyleSheet.create({
     footer: {
         borderTopWidth: 1,
-        backgroundColor: '#f0f0f0',
+        backgroundColor: '#fefae0',
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',

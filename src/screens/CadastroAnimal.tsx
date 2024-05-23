@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, Alert } from "react-native";
 import axios from 'axios';
-import Head from "../componentes/Head";
+import Head from "../componentes/Header";
 import Footer from "../componentes/Footer";
 
 

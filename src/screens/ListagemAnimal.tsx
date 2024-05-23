@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { FlatList, Image, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { Alert, FlatList, Image, ScrollView, StatusBar, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import axios from 'axios';
+import Header from '../componentes/Header';
 import Footer from '../componentes/Footer';
 
 interface Animal {
@@ -16,72 +17,105 @@ interface Animal {
     habitat: string;
 }
 
-
 const ListagemAnimal = () => {
-    const [dados, setDados] = useState<Animal[]>([]);
+    const [dados, setDados] = useState<any[]>([]);
     const [error, setError] = useState<string | null>(null);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get<Animal[]>('http://10.137.11.228:8000/api/animal/todos');
-                console.log('Dados recebidos da API:', response.data);
-                setDados(response.data);
-                console.log("dados da api" + dados);
-            } catch (error) {
-                console.error('Erro ao buscar os dados:', error);
-                setError("Ocorreu um erro ao buscar os bolos");
-            }
-        };
+    const fetchData = async () => {
+        try {
+            const response = await axios.get('http://10.137.11.225:8000/api/animal/todos');
+            console.log('Dados recebidos da API:', response.data);
+            setDados(response.data.data);
+        } catch (error) {
+            console.error('Erro ao buscar os dados:', error);
+            setError("Ocorreu um erro ao buscar os bolos");
+        }
+    };
 
+    useEffect(() => {
         fetchData();
     }, []);
+
+    const deletarAnimal = async (id: string) => {
+        try {
+            await axios.delete(`http://10.137.11.225:8000/api/animal/excluir/${id}`);
+            Alert.alert("Sucesso!", "Animal deletado com sucesso.");
+            fetchData(); 
+        } catch (error) {
+            console.error(error);
+            Alert.alert("Erro!", "Ocorreu um erro ao deletar o animal.");
+        }
+    };
+
+    const atualizarAnimal = async (id: string, dadosAtualizacao: Partial<Animal>) => {
+        try {
+            await axios.post(`http://10.137.11.225:8000/api/animal/atualizar/${id}`, dadosAtualizacao);
+            Alert.alert("Sucesso!", "Animal atualizado com sucesso.");
+            fetchData();
+        } catch (error) {
+            console.error(error);
+            Alert.alert("Erro!", "Ocorreu um erro ao atualizar o animal.");
+        }
+    };
+
+
+
+
 
     const renderItem = ({ item }: { item: Animal }) => {
         return (
             <View style={styles.itemContainer}>
                 <TouchableOpacity style={styles.item}>
                     <View style={styles.text}>
-                        <Text style={styles.tituloBolos}>{item.nome}</Text>
-                        <Text style={styles.preco}>Idade: {item.idade}</Text>
-                        <Text style={styles.textColor}>Espécie: {item.especie}</Text>
-                        <Text>RA: {item.ra}</Text>
-                        <Text>Peso: {item.peso} kg</Text>
-                        <Text>Altura: {item.altura} cm</Text>
-                        <Text>Sexo: {item.sexo}</Text>
-                        <Text>Dieta: {item.dieta}</Text>
-                        <Text>Hábitat: {item.habitat}</Text>
+                        <Text style={styles.nome}>{item.nome}</Text>
+                        <Text style={styles.idade}>Idade: {item.idade}</Text>
+                        <Text style={styles.text}>Espécie: {item.especie}</Text>
+                        <Text style={styles.text}>RA: {item.ra}</Text>
+                        <Text style={styles.text}>Peso: {item.peso} kg</Text>
+                        <Text style={styles.text}>Altura: {item.altura} cm</Text>
+                        <Text style={styles.text}>Sexo: {item.sexo}</Text>
+                        <Text style={styles.text}>Dieta: {item.dieta}</Text>
+                        <Text style={styles.text}>Habitat: {item.habitat}</Text>
+
+                        <View>
+                            <TouchableOpacity onPress={() => atualizarAnimal(item.id, { nome: 'Novo Nome', idade: 'Nova Idade' })}>
+                                <Text>Editar</Text>
+                            </TouchableOpacity>
+                            <TouchableOpacity onPress={() => deletarAnimal(item.id)}>
+                                <Text>Excluir</Text>
+                            </TouchableOpacity>
+                        </View>
                     </View>
                 </TouchableOpacity>
             </View>
         );
     };
+
     return (
         <View style={styles.container}>
             <StatusBar backgroundColor="black" barStyle='light-content' />
-            <View style={styles.header}>
-                <Image source={require('../assets/images/logo.png')} style={styles.logo} />
-            </View>
-
+            <Header />
             <FlatList
                 data={dados}
                 renderItem={renderItem}
-                keyExtractor={(item) => item.id}
+                keyExtractor={(item) => item.id.toString()}
             />
-            <Footer/>
+            <Footer />
         </View>
-        
     );
 }
 
 
 const styles = StyleSheet.create({
-
     container: {
         flex: 1,
     },
+    logo: {
+        width: 200,
+        height: 130,
+    },
     item: {
-        backgroundColor: '#feedc6',
+        backgroundColor: '#606c38',
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 8,
@@ -90,61 +124,25 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
     },
-    header: {
-        backgroundColor: '#606c38',
-        alignItems: 'center',
-        paddingVertical: 20
-    },
-    headerText: {
-        fontSize: 20,
-        fontWeight: 'bold',
-        color: 'black'
-    },
-    footer: {
-        borderTopWidth: 0.2,
-        backgroundColor: 'white',
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        paddingVertical: 10
-    },
-    footerIcon: {
-        width: 30,
-        height: 30
-    },
-    image: {
-        width: 130,
-        height: 100,
-        marginRight: 25
-    },
-    textColor: {
-        fontWeight: 'bold',
-        color: 'black'
-    },
-    logo: {
-        width: 130,
-        height: 100
-    },
     text: {
+        color: 'white',
+        fontWeight: 'bold',
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
         flex: 1,
     },
-    tituloBolos: {
+    nome: {
         fontWeight: 'bold',
-        color: 'black',
-        fontSize: 20,
+        color: 'white',
+        fontSize: 25,
         textAlign: 'center',
-        marginBottom: 10,
     },
-    preco: {
+    idade: {
         fontWeight: 'bold',
-        color: 'red',
+        color: 'white',
         fontSize: 20,
         marginBottom: 10,
-        backgroundColor: 'yellow',
-        borderRadius: 10
     },
     itemContainer: {
         flexDirection: 'row',
@@ -153,7 +151,7 @@ const styles = StyleSheet.create({
         marginVertical: 8,
         marginHorizontal: 8,
     },
-   
+
 
 
 });

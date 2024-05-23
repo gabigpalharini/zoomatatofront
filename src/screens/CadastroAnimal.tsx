@@ -47,19 +47,14 @@ const CadastroAnimal = () => {
 
 
     return (
-       
-        <ScrollView style={styles.container}>
+        <View style={styles.container}>
+        <ScrollView >
             <StatusBar backgroundColor="black" barStyle="light-content" />
-           
             <View style={styles.header}>
                 <Image source={logo} style={styles.logo} />
-              
-               
-          
             </View>
             <View style={styles.form}>
                 <Text style={styles.fText}>Cadastro de Animais</Text>
-                
                 <TextInput
                     style={styles.input}
                     placeholder="Nome do Animal"
@@ -103,10 +98,9 @@ const CadastroAnimal = () => {
                     <Text style={styles.imageButtonText}>Cadastrar Animal</Text>
                 </TouchableOpacity>
             </View>
-
-            
-        <Footer />
         </ScrollView>
+          <Footer />
+</View>
 
     
     );

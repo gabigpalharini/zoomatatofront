@@ -1,6 +1,5 @@
 import { useNavigation, useRoute } from "@react-navigation/native";
 import React from "react";
-
 import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
 
 function Footer(): React.JSX.Element {

@@ -9,25 +9,26 @@ function Footer(): React.JSX.Element {
 
     return(
         <View style={styles.footer}>
-      <TouchableOpacity onPress={() => navigation.navigate('ListagemAnimal')}>
-        <Image source={require('../assets/images/lupa.png')}
-        style={styles.footerIcon}/>
-      </TouchableOpacity>
+      
 
       <TouchableOpacity onPress={() =>navigation.navigate('CadastroAnimal')}>
         <Image source={require('../assets/images/profile.png')}
          style={styles.footerIcon}/>
       </TouchableOpacity>
 
-
       <TouchableOpacity >
         <Image source={require('../assets/images/home.png')}
          style={styles.footerIcon}/>
       </TouchableOpacity>
 
-      <TouchableOpacity >
-        <Image source={require('../assets/images/menu.png')}
+      <TouchableOpacity onPress={() =>navigation.navigate('EditarAnimal')}>
+        <Image source={require('../assets/images/lupa.png')}
          style={styles.footerIcon}/>
+      </TouchableOpacity>
+
+      <TouchableOpacity onPress={() => navigation.navigate('ListagemAnimal')}>
+        <Image source={require('../assets/images/menu.png')}
+        style={styles.footerIcon}/>
       </TouchableOpacity>
      </View>
     );

@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, Alert } from "react-native";
 import axios from 'axios';
-import Head from "../componentes/Header";
 import Footer from "../componentes/Footer";
+import Header from "../componentes/Header";
+import { useNavigation } from "@react-navigation/native";
 
 
 const CadastroAnimal = () => {
@@ -16,10 +17,6 @@ const CadastroAnimal = () => {
     const [sexo, setSexo] = useState<string>('');
     const [dieta, setDieta] = useState<string>('');
     const [habitat, setHabitat] = useState<string>('');
-
-    const logo = require('../assets/images/logo.png');
-
-    
 
     const cadastrarAnimal = async () => {
         try {
@@ -35,7 +32,7 @@ const CadastroAnimal = () => {
             formData.append('habitat', habitat);
 
             const response = await axios.post('http://10.137.11.228:8000/api/animal/cadastrar', formData, {
-              headers: {
+                headers: {
                     'Content-Type': 'multipart/form-data'
                 }
             });
@@ -47,12 +44,10 @@ const CadastroAnimal = () => {
 
 
     return (
-        <View style={styles.container}>
+       <View style={styles.container}>
         <ScrollView >
             <StatusBar backgroundColor="black" barStyle="light-content" />
-            <View style={styles.header}>
-                <Image source={logo} style={styles.logo} />
-            </View>
+            <Header />
             <View style={styles.form}>
                 <Text style={styles.fText}>Cadastro de Animais</Text>
                 <TextInput
@@ -101,45 +96,21 @@ const CadastroAnimal = () => {
         </ScrollView>
           <Footer />
 </View>
-
     
     );
 }
 const styles = StyleSheet.create({
-    alinhamentopesquisa: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginTop: 10,
-        width: '90%',
-        color:''
-    },
     container: {
         flex: 1,
-    },
-    header: {
-        backgroundColor: '#606c38',
-        paddingVertical: 10,
-        alignItems: 'center',
-    },
-    logo: {
-        width: 200,
-        height: 130,
     },
     form: {
         padding: 10,
         backgroundColor: '#ccd5ae',
-        marginBottom: 10,
         paddingVertical: 30,
-    },
-    lupa: {
-        width: 30,
-        height: 30,
-        marginLeft: 20,
-        marginTop: 50
     },
     input: {
         height: 40,
-        borderColor: 'white',
+        borderColor: 'black',
         borderWidth: 1,
         marginBottom: 10,
         paddingHorizontal: 10,
@@ -165,32 +136,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 'auto',
     
     },
-    footer: {
-        borderTopWidth: 1.5,
-        backgroundColor: '#fefae0', // Alterado para um cinza claro para contrastar com o fundo branco
-        flexDirection: 'row',
-        justifyContent: 'space-around',
-        alignItems: 'center',
-        paddingVertical: 15, // Ajustado para um valor menor para um espaçamento mais fino
-        paddingHorizontal: 20, // Adicionado para criar um espaço horizontal confortável
-        shadowColor: "#000", // Adicionado para dar sombra
-        shadowOffset: {
-            width: 0,
-            height: 2,
-        },
-        shadowOpacity: 0.25,
-        shadowRadius: 3.84,
-        elevation: 5, // Opicional para Android
-        
-    },
-
-    footerIcon: {
-        width: 24, // Reduzido para um tamanho mais adequado
-        height: 24, // Reduzido para manter proporção
-        margin: 10, // Adicionado para criar espaço entre os ícones
-    },
-
+    
 });
-
 
 export default CadastroAnimal;

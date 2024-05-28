@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Image, StatusBar, StyleSheet, Text, TextInput, TouchableOpacity, View, ScrollView, Alert } from "react-native";
 import axios from 'axios';
-import Footer from "../componentes/Footer";
 import Header from "../componentes/Header";
+import Footer from "../componentes/Footer";
 import { CommonActions, useNavigation } from "@react-navigation/native";
 
-const EditarAnimal = ({ route }: { route: any }) => {
+const EditarAnimais = ({ route }: { route: any }) => {
     const navigation = useNavigation();
     const { animal } = route.params;
     const [nome, setNome] = useState(animal.nome);
@@ -24,7 +24,7 @@ const EditarAnimal = ({ route }: { route: any }) => {
             navigation.dispatch(
                 CommonActions.reset({
                     index: 0,
-                    routes: [{ name: 'Listagem' }],
+                    routes: [{ name: 'ListagemAnimais' }],
                 })
             );
         }
@@ -32,7 +32,7 @@ const EditarAnimal = ({ route }: { route: any }) => {
 
     const salvarAlteracoes = async () => {
         try {
-            await axios.post(`http://10.137.11.228:8000/api/animal/atualizar/${animal.id}`, {
+            await axios.post(`http://10.137.11.228/api/animal/atualizar/${animal.id}`, {
                 nome,
                 idade,
                 especie,
@@ -161,4 +161,4 @@ const styles = StyleSheet.create({
     },
 });
 
-export default EditarAnimal;
+export default EditarAnimais;

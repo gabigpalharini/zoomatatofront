@@ -89,14 +89,16 @@ const ListagemAnimal = () => {
                         <Text style={styles.text}>Dieta: {item.dieta}</Text>
                         <Text style={styles.text}>Habitat: {item.habitat}</Text>
 
-                        <View style ={styles.actions}>
-                            <TouchableOpacity onPress={() => editarAnimais(item)}>
-                                <Image source={require('../assets/images/update.png')} style={styles.updateIcon} />  
-                            </TouchableOpacity>
-                            <TouchableOpacity onPress={() => deletarAnimal(item.id)}>
-                                <Image source={require('../assets/images/delete.png')} style={styles.deleteIcon} />
-                            </TouchableOpacity>
-                        </View>
+                        <View style={styles.item}>
+    <View style={styles.actions}>
+        <TouchableOpacity onPress={() => editarAnimais(item)}>
+            <Image source={require('../assets/images/update.png')} style={styles.updateIcon} />  
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => deletarAnimal(item.id)}>
+            <Image source={require('../assets/images/delete.png')} style={styles.deleteIcon} />
+        </TouchableOpacity>
+    </View>
+</View>
                     </View>
                 </TouchableOpacity>
             </View>

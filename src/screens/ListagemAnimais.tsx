@@ -57,7 +57,7 @@ const ListagemAnimal = () => {
 
     const buscarAnimal = async () => {
         try {
-            const response = await axios.post('http://10.137.11.225/ZooMatato/public/api/animal/pesquisar/nome', { nome: pesquisaAnimal }, {
+            const response = await axios.post('http://10.137.11.228:8000/api/animal/pesquisar/nome', { nome: pesquisaAnimal }, {
                 headers: {
                     "Accept": "application/json",
                     "Content-Type": "application/json"
